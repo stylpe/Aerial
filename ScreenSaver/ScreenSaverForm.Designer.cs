@@ -1,4 +1,7 @@
-﻿namespace ScreenSaver
+using System;
+using System.IO;
+
+namespace ScreenSaver
 {
     partial class ScreenSaverForm
     {
@@ -29,20 +32,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenSaverForm));
-            this.player = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.player = new Vlc.DotNet.Forms.VlcControl();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
-            // 
-            // player
-            // 
-            this.player.Enabled = true;
-            this.player.Location = new System.Drawing.Point(546, 22);
-            this.player.Name = "player";
-            this.player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player.OcxState")));
-            this.player.Size = new System.Drawing.Size(345, 213);
-            this.player.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -80,6 +74,19 @@
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Visible = false;
             // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.Black;
+            this.player.Location = new System.Drawing.Point(12, 12);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(528, 516);
+            this.player.Spu = -1;
+            this.player.TabIndex = 4;
+            this.player.Text = "vlcControl1";
+            this.player.VlcLibDirectory = new DirectoryInfo(Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
+
+            this.player.VlcMediaplayerOptions = null;
+            // 
             // ScreenSaverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -87,9 +94,9 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(960, 540);
+            this.Controls.Add(this.player);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.player);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScreenSaverForm";
@@ -103,9 +110,9 @@
         }
 
         #endregion
-        private AxWMPLib.AxWindowsMediaPlayer player;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSettings;
+        private Vlc.DotNet.Forms.VlcControl player;
     }
 }
 

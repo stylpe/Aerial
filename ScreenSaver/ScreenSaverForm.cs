@@ -76,10 +76,10 @@ namespace ScreenSaver
         
         void RegisterEvents()
         {
-            this.player.MouseDownEvent += Player_MouseDownEvent;
-            this.player.KeyPressEvent += player_KeyPressEvent;
-            this.player.PlayStateChange += player_PlayStateChange;
-            this.player.MouseMoveEvent += player_MouseMoveEvent;
+            this.player.MouseClick += Player_Click; 
+            this.player.KeyPress += ScreenSaverForm_KeyPress;
+            this.player.Playing += player_PlayStateChange;
+            this.player.MouseMove += ScreenSaverForm_MouseMove;
 
             this.btnClose.Click += new EventHandler(this.btnClose_Click);
             this.btnClose.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
@@ -87,11 +87,12 @@ namespace ScreenSaver
             this.btnSettings.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
 
             this.KeyPress += new KeyPressEventHandler(this.ScreenSaverForm_KeyPress);
-            this.MouseDown += DoMouseDown;
+            this.MouseDown += Player_Click;
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseUp);
         }
+
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -124,7 +125,7 @@ namespace ScreenSaver
                 };
 #endif
 
-                NextVideoTimer.Tick += NextVideoTimer_Tick;
+               // NextVideoTimer.Tick += NextVideoTimer_Tick;
                 NextVideoTimer.Interval = 1000;
                 NextVideoTimer.Enabled = true;
                     
@@ -165,21 +166,11 @@ namespace ScreenSaver
             else
                 ShouldExit();
         }
-        private void player_KeyPressEvent(object sender, AxWMPLib._WMPOCXEvents_KeyPressEvent e)
-        {
-            ScreenSaverForm_KeyPress(sender, new KeyPressEventArgs((char)e.nKeyAscii));
-        }
-#endregion
+        #endregion
 
         #region Mouse events
         
-        private void Player_MouseDownEvent(object sender, AxWMPLib._WMPOCXEvents_MouseDownEvent e)
-        {
-            Trace.WriteLine("Player_MouseDownEvent() e.nButton=" + e.nButton);
-            
-            DoMouseDown(null, new MouseEventArgs(e.nButton == 1 ? MouseButtons.Left : MouseButtons.Right, 0, e.fX, e.fY, 0));
-        }
-        private void DoMouseDown(object sender, MouseEventArgs e)
+        private void Player_Click(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("ScreenSaverForm_MouseDown()");
             Point m = PointToClient(Cursor.Position);
@@ -205,13 +196,7 @@ namespace ScreenSaver
         {
             Trace.WriteLine("ScreenSaverForm_MouseUp()");
         }
-        
-        private void player_MouseMoveEvent(object sender, AxWMPLib._WMPOCXEvents_MouseMoveEvent e)
-        {
-            Trace.WriteLine("player_MouseMoveEvent()");
-            ScreenSaverForm_MouseMove(sender, new MouseEventArgs(MouseButtons.None, 0, e.fX, e.fY, 0));
-        }
-        
+                
         private void btnClose_MouseMove(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("btnClose_MouseMove()");
@@ -334,53 +319,34 @@ namespace ScreenSaver
                 }
 
                 string url = Movies[currentVideoIndex].url;
+                player.Play(url);
 
-                if (Caching.IsHit(url))
-                {
-                    player.URL = Caching.Get(url);
-                }
-                else
-                {
-                    player.URL = url;
-                    if (cacheEnabled && shouldCache && 
-                        !previewMode &&  !Caching.IsCaching(url)) {
-                        Caching.StartDelayedCache(url);
-                    }
-                }
+                //if (Caching.IsHit(url))
+                //{
+                //    player.Play(Caching.Get(url));
+                //}
+                //else
+                //{
+                //    if (cacheEnabled && shouldCache && 
+                //        !previewMode &&  !Caching.IsCaching(url)) {
+                //        Caching.StartDelayedCache(url);
+                //    }
+                //}
                 currentVideoIndex++;
                 if (currentVideoIndex >= Movies.Count)
                     currentVideoIndex = 0;
             }
         }
 
-        private void NextVideoTimer_Tick(object sender, EventArgs e)
-        {
-            // Trace.WriteLine("Timer: " + state);
-            var state = this.player.playState;
-            if (state == WMPLib.WMPPlayState.wmppsReady ||
-                state == WMPLib.WMPPlayState.wmppsUndefined ||
-                state == WMPLib.WMPPlayState.wmppsStopped)
-            {
-                SetNextVideo();
-            }
-            if (lastInteraction.AddSeconds(1) < DateTime.Now)
-            {
-                ShowButtons(false);
-            }
-        }
 
-        private void player_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        private void player_PlayStateChange(object sender, EventArgs e)
         {
             NativeMethods.EnableMonitorSleep();
         }
 
         private void LayoutPlayer()
         {
-            this.player.enableContextMenu = false;
-            this.player.settings.autoStart = true;
-            this.player.settings.enableErrorDialogs = true;
-            this.player.stretchToFit = true;
-            this.player.uiMode = "none";
+            this.player.ContextMenu = null;
             Application.AddMessageFilter(new IgnoreMouseClickMessageFilter(this, player));
 
             ResizePlayer();
@@ -393,7 +359,7 @@ namespace ScreenSaver
         {
             this.player.Size = CalculateVideoFillSize(this.Size);
             this.player.Top = (this.Size.Height / 2) - (this.player.Size.Height / 2);
-            this.player.Left =  (this.Size.Width / 2) - (this.player.Size.Width / 2);
+            this.player.Left = (this.Size.Width / 2) - (this.player.Size.Width / 2);
         }
 
         /// <summary>
