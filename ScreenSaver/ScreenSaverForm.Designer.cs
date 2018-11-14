@@ -83,9 +83,9 @@ namespace ScreenSaver
             this.player.Spu = -1;
             this.player.TabIndex = 4;
             this.player.Text = "vlcControl1";
-            this.player.VlcLibDirectory = new DirectoryInfo(Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
-
+            this.player.VlcLibDirectory = null;
             this.player.VlcMediaplayerOptions = null;
+            this.player.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.player_VlcLibDirectoryNeeded);
             // 
             // ScreenSaverForm
             // 
