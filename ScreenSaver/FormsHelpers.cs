@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -46,6 +47,15 @@ namespace Aerial
                 topMost,
                 rightMost - leftMost,
                 bottomMost - topMost);
+        }
+
+        /// <summary>
+        /// Sets the libvlc directory to a subdirectory of current directory based on the platform (32 vs 64-bit).
+        /// </summary>
+        /// <param name="e"></param>
+        public static void SetRelativeLibvlcDirectory(this Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+        {
+            e.VlcLibDirectory = new DirectoryInfo(Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
         }
     }
 }
