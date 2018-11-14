@@ -39,7 +39,7 @@ namespace ScreenSaver
             this.grpChosenVideos = new System.Windows.Forms.GroupBox();
             this.tvChosen = new Aerial.Controls.EntitiesTreeView();
             this.cbLivePreview = new System.Windows.Forms.CheckBox();
-            this.player = new AxWMPLib.AxWindowsMediaPlayer();
+            this.player = new Vlc.DotNet.Forms.VlcControl();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkUseTimeOfDay = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -132,7 +132,7 @@ namespace ScreenSaver
             this.tabPreferences.Controls.Add(this.groupBox1);
             this.tabPreferences.Location = new System.Drawing.Point(4, 22);
             this.tabPreferences.Name = "tabPreferences";
-            this.tabPreferences.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPreferences.Padding = new System.Windows.Forms.Padding(3);
             this.tabPreferences.Size = new System.Drawing.Size(402, 335);
             this.tabPreferences.TabIndex = 0;
             this.tabPreferences.Text = "Preferences";
@@ -178,12 +178,15 @@ namespace ScreenSaver
             // 
             // player
             // 
-            this.player.Enabled = true;
+            this.player.BackColor = System.Drawing.Color.Black;
             this.player.Location = new System.Drawing.Point(151, 19);
             this.player.Name = "player";
-            this.player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player.OcxState")));
             this.player.Size = new System.Drawing.Size(232, 132);
+            this.player.Spu = -1;
             this.player.TabIndex = 16;
+            this.player.VlcLibDirectory = null;
+            this.player.VlcMediaplayerOptions = null;
+            this.player.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.player_VlcLibDirectoryNeeded);
             // 
             // pictureBox1
             // 
@@ -224,7 +227,7 @@ namespace ScreenSaver
             this.cbMultiScreenMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMultiScreenMode.FormattingEnabled = true;
             this.cbMultiScreenMode.Location = new System.Drawing.Point(7, 25);
-            this.cbMultiScreenMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbMultiScreenMode.Margin = new System.Windows.Forms.Padding(2);
             this.cbMultiScreenMode.Name = "cbMultiScreenMode";
             this.cbMultiScreenMode.Size = new System.Drawing.Size(377, 21);
             this.cbMultiScreenMode.TabIndex = 0;
@@ -234,7 +237,7 @@ namespace ScreenSaver
             this.tabCache.Controls.Add(this.groupBox2);
             this.tabCache.Location = new System.Drawing.Point(4, 22);
             this.tabCache.Name = "tabCache";
-            this.tabCache.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabCache.Padding = new System.Windows.Forms.Padding(3);
             this.tabCache.Size = new System.Drawing.Size(402, 335);
             this.tabCache.TabIndex = 1;
             this.tabCache.Text = "Cache";
@@ -271,7 +274,7 @@ namespace ScreenSaver
             // fullDownloadBtn
             // 
             this.fullDownloadBtn.Location = new System.Drawing.Point(231, 18);
-            this.fullDownloadBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fullDownloadBtn.Margin = new System.Windows.Forms.Padding(2);
             this.fullDownloadBtn.Name = "fullDownloadBtn";
             this.fullDownloadBtn.Size = new System.Drawing.Size(152, 24);
             this.fullDownloadBtn.TabIndex = 20;
@@ -355,7 +358,7 @@ namespace ScreenSaver
             this.tabSource.Controls.Add(this.lbl_VideoSourceURL);
             this.tabSource.Controls.Add(this.changeVideoSourceText);
             this.tabSource.Location = new System.Drawing.Point(4, 22);
-            this.tabSource.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSource.Margin = new System.Windows.Forms.Padding(2);
             this.tabSource.Name = "tabSource";
             this.tabSource.Size = new System.Drawing.Size(402, 335);
             this.tabSource.TabIndex = 3;
@@ -365,7 +368,7 @@ namespace ScreenSaver
             // SetToFourK_btn
             // 
             this.SetToFourK_btn.Location = new System.Drawing.Point(248, 60);
-            this.SetToFourK_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SetToFourK_btn.Margin = new System.Windows.Forms.Padding(2);
             this.SetToFourK_btn.Name = "SetToFourK_btn";
             this.SetToFourK_btn.Size = new System.Drawing.Size(140, 22);
             this.SetToFourK_btn.TabIndex = 26;
@@ -376,7 +379,7 @@ namespace ScreenSaver
             // videoSourceResetButton
             // 
             this.videoSourceResetButton.Location = new System.Drawing.Point(11, 58);
-            this.videoSourceResetButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.videoSourceResetButton.Margin = new System.Windows.Forms.Padding(2);
             this.videoSourceResetButton.Name = "videoSourceResetButton";
             this.videoSourceResetButton.Size = new System.Drawing.Size(142, 22);
             this.videoSourceResetButton.TabIndex = 25;
@@ -473,7 +476,7 @@ namespace ScreenSaver
         private System.Windows.Forms.Label lblFreeSpace;
         private System.Windows.Forms.Button btnPurgeCache;
         private System.Windows.Forms.Label lblCacheSize;
-        private AxWMPLib.AxWindowsMediaPlayer player;
+        private Vlc.DotNet.Forms.VlcControl player;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox cbLivePreview;
         private System.Windows.Forms.Timer timerDiskUpdate;
