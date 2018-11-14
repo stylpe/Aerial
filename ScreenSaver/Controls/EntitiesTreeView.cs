@@ -58,7 +58,7 @@ namespace Aerial.Controls
         {
             SelectedNode = Nodes[0].Nodes[0];
             Select();
-            TopNode.EnsureVisible();
+            TopNode?.EnsureVisible();
             Nodes[0].EnsureVisible();
         }
 
