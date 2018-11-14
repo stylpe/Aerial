@@ -395,5 +395,9 @@ namespace ScreenSaver
                 Application.Exit();
         }
 
+        private void player_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+        {
+            e.VlcLibDirectory = new DirectoryInfo(Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
+        }
     }
 }
