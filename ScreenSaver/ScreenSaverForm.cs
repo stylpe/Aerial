@@ -79,6 +79,9 @@ namespace ScreenSaver
             this.player.MouseClick += Player_Click; 
             this.player.KeyPress += ScreenSaverForm_KeyPress;
             this.player.Playing += player_PlayStateChange;
+
+            this.player.Video.IsMouseInputEnabled = false; // Disable VLC video player handling mouse/keyboard events itself, 
+            this.player.Video.IsKeyInputEnabled = false;   // so the control events are invoked. Requires Vlc.DotNet 3.0+
             this.player.MouseMove += ScreenSaverForm_MouseMove;
 
             this.btnClose.Click += new EventHandler(this.btnClose_Click);
