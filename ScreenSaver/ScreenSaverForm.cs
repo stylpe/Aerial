@@ -76,24 +76,28 @@ namespace ScreenSaver
         
         void RegisterEvents()
         {
-            this.player.MouseClick += Player_Click; 
-            this.player.KeyPress += ScreenSaverForm_KeyPress;
-            this.player.Playing += player_PlayStateChange;
-
             this.player.Video.IsMouseInputEnabled = false; // Disable VLC video player handling mouse/keyboard events itself, 
             this.player.Video.IsKeyInputEnabled = false;   // so the control events are invoked. Requires Vlc.DotNet 3.0+
+
+            this.player.MouseDown += ScreenSaverForm_MouseDown;
+            this.MouseDown += ScreenSaverForm_MouseDown;
+
             this.player.MouseMove += ScreenSaverForm_MouseMove;
+            this.MouseMove += ScreenSaverForm_MouseMove;
+
+            this.MouseClick += ScreenSaverForm_MouseClick;
+            this.player.MouseClick += ScreenSaverForm_MouseClick;
+
+            this.player.KeyPress += ScreenSaverForm_KeyPress;
+            this.KeyPress += ScreenSaverForm_KeyPress;
+
+            this.player.Playing += player_PlayStateChange;
 
             this.btnClose.Click += new EventHandler(this.btnClose_Click);
             this.btnClose.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
             this.btnSettings.Click += new EventHandler(this.btnSettings_Click);
             this.btnSettings.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
 
-            this.KeyPress += new KeyPressEventHandler(this.ScreenSaverForm_KeyPress);
-            this.MouseDown += Player_Click;
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseClick);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ScreenSaverForm_MouseUp);
         }
 
 
@@ -173,7 +177,7 @@ namespace ScreenSaver
 
         #region Mouse events
         
-        private void Player_Click(object sender, MouseEventArgs e)
+        private void ScreenSaverForm_MouseDown(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("ScreenSaverForm_MouseDown()");
             Point m = PointToClient(Cursor.Position);
@@ -195,11 +199,7 @@ namespace ScreenSaver
             Trace.WriteLine("ScreenSaverForm_MouseClick()");
             ShouldExit();
         }
-        private void ScreenSaverForm_MouseUp(object sender, MouseEventArgs e)
-        {
-            Trace.WriteLine("ScreenSaverForm_MouseUp()");
-        }
-                
+        
         private void btnClose_MouseMove(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("btnClose_MouseMove()");
@@ -347,7 +347,7 @@ namespace ScreenSaver
         {
             NativeMethods.EnableMonitorSleep();
         }
-
+        
         private void LayoutPlayer()
         {
             this.player.ContextMenu = null;
