@@ -8,6 +8,7 @@ using System.Net;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ScreenSaver
 {
@@ -92,6 +93,7 @@ namespace ScreenSaver
             this.KeyPress += ScreenSaverForm_KeyPress;
 
             this.player.Playing += player_PlayStateChange;
+            this.player.EndReached += player_Stopped;
 
             this.btnClose.Click += new EventHandler(this.btnClose_Click);
             this.btnClose.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
@@ -347,7 +349,16 @@ namespace ScreenSaver
         {
             NativeMethods.EnableMonitorSleep();
         }
-        
+
+        private void player_Stopped(object sender, EventArgs e)
+        {
+            // Note: can't interact with VLC from same thread with callbacks
+            Task.Run(() =>
+            {
+                this.Invoke(new Action(SetNextVideo));
+            });
+        }
+
         private void LayoutPlayer()
         {
             this.player.ContextMenu = null;
