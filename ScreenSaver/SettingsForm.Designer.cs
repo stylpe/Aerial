@@ -187,6 +187,7 @@ namespace ScreenSaver
             this.player.VlcLibDirectory = null;
             this.player.VlcMediaplayerOptions = null;
             this.player.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.player_VlcLibDirectoryNeeded);
+            this.player.EncounteredError += new System.EventHandler<Vlc.DotNet.Core.VlcMediaPlayerEncounteredErrorEventArgs>(this.player_EncounteredError);
             // 
             // pictureBox1
             // 
