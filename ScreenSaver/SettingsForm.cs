@@ -86,9 +86,9 @@ namespace ScreenSaver
             Trace.WriteLine("Selected tree element " + e.Node.FullPath);
             if (cbLivePreview.Checked && e.Node.FullPath.Contains("\\"))
             {
-                string url = tvChosen.GetUrl(e.Node.FullPath);
-                //player.URL = Caching.TryHit(url);
-                player.Play(url);
+                var url = tvChosen.GetUrl(e.Node.FullPath);
+                var cached = Caching.TryHit(url);
+                player.Play(new Uri(cached));
             }
         }
 

@@ -322,19 +322,20 @@ namespace ScreenSaver
                 }
 
                 string url = Movies[currentVideoIndex].url;
-                player.Play(url);
 
-                //if (Caching.IsHit(url))
-                //{
-                //    player.Play(Caching.Get(url));
-                //}
-                //else
-                //{
-                //    if (cacheEnabled && shouldCache && 
-                //        !previewMode &&  !Caching.IsCaching(url)) {
-                //        Caching.StartDelayedCache(url);
-                //    }
-                //}
+                if (Caching.IsHit(url))
+                {
+                    player.Play(new Uri(Caching.Get(url)));
+                }
+                else
+                {
+                    player.Play(url);
+                    if (cacheEnabled && shouldCache &&
+                        !previewMode && !Caching.IsCaching(url))
+                    {
+                        Caching.StartDelayedCache(url);
+                    }
+                }
                 currentVideoIndex++;
                 if (currentVideoIndex >= Movies.Count)
                     currentVideoIndex = 0;
