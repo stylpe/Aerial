@@ -94,9 +94,9 @@ namespace ScreenSaver
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(960, 540);
-            this.Controls.Add(this.player);
-            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.player);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScreenSaverForm";
