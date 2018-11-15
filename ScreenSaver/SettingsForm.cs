@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -298,6 +298,11 @@ namespace ScreenSaver
         private void player_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
         {
             e.SetRelativeLibvlcDirectory();
+        }
+
+        private void player_EncounteredError(object sender, Vlc.DotNet.Core.VlcMediaPlayerEncounteredErrorEventArgs e)
+        {
+            MessageBox.Show(e.ToString());
         }
     }
 }
