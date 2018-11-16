@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -82,19 +82,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="Vlc.DotNet.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
       <HintPath>..\packages\Vlc.DotNet.Core.3.0.0-develop317\lib\net45\Vlc.DotNet.Core.dll</HintPath>
     </Reference>
@@ -165,17 +157,6 @@
     <None Include="..\Todo.md">
       <Link>docs\Todo.md</Link>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="imgs\surfacebook.png" />

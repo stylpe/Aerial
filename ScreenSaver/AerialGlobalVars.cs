@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aerial
+﻿namespace Aerial
 {
     /**
      * Class for holding global variables such as URLs to the github repo for easy changing.  Origionally had them
