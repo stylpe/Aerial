@@ -95,11 +95,10 @@ namespace ScreenSaver
             this.player.Playing += player_PlayStateChange;
             this.player.EndReached += player_Stopped;
 
-            this.btnClose.Click += new EventHandler(this.btnClose_Click);
-            this.btnClose.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
-            this.btnSettings.Click += new EventHandler(this.btnSettings_Click);
-            this.btnSettings.MouseMove += new MouseEventHandler(this.btnClose_MouseMove);
-
+            this.btnClose.Click += btnClose_Click;
+            this.btnClose.MouseMove += btnClose_MouseMove;
+            this.btnSettings.Click += btnSettings_Click;
+            this.btnSettings.MouseMove += btnClose_MouseMove;
         }
 
 
