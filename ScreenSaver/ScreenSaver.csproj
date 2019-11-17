@@ -104,19 +104,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Vlc.DotNet.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.3.0.0-develop317\lib\net45\Vlc.DotNet.Core.dll</HintPath>
+      <HintPath>..\packages\Vlc.DotNet.Core.3.0.0\lib\net45\Vlc.DotNet.Core.dll</HintPath>
     </Reference>
     <Reference Include="Vlc.DotNet.Core.Interops, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.Interops.3.0.0-develop317\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.3.0.0\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
     </Reference>
     <Reference Include="Vlc.DotNet.Forms, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Forms.3.0.0-develop317\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
+      <HintPath>..\packages\Vlc.DotNet.Forms.3.0.0\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -206,12 +207,12 @@
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).exe" "$(TargetDir)\$(TargetName).scr"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="libvlc.custom.targets" />
-  <Import Project="..\packages\VideoLAN.LibVLC.Windows.3.0.4\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.4\build\VideoLAN.LibVLC.Windows.targets')" />
+  <Import Project="..\packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.4\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VideoLAN.LibVLC.Windows.3.0.4\build\VideoLAN.LibVLC.Windows.targets'))" />
+    <Error Condition="!Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
