@@ -77,7 +77,7 @@ namespace ScreenSaver
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 384);
+            this.okButton.Location = new System.Drawing.Point(12, 446);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace ScreenSaver
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cancelButton.CausesValidation = false;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(93, 384);
+            this.cancelButton.Location = new System.Drawing.Point(93, 446);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -101,7 +101,7 @@ namespace ScreenSaver
             // lblVersion
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.Location = new System.Drawing.Point(206, 387);
+            this.lblVersion.Location = new System.Drawing.Point(563, 449);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblVersion.Size = new System.Drawing.Size(213, 23);
@@ -123,7 +123,7 @@ namespace ScreenSaver
             this.tabs.Location = new System.Drawing.Point(12, 11);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(410, 361);
+            this.tabs.Size = new System.Drawing.Size(767, 423);
             this.tabs.TabIndex = 14;
             // 
             // tabPreferences
@@ -133,7 +133,7 @@ namespace ScreenSaver
             this.tabPreferences.Location = new System.Drawing.Point(4, 22);
             this.tabPreferences.Name = "tabPreferences";
             this.tabPreferences.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPreferences.Size = new System.Drawing.Size(402, 335);
+            this.tabPreferences.Size = new System.Drawing.Size(759, 397);
             this.tabPreferences.TabIndex = 0;
             this.tabPreferences.Text = "Preferences";
             this.tabPreferences.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@ namespace ScreenSaver
             this.grpChosenVideos.Controls.Add(this.chkUseTimeOfDay);
             this.grpChosenVideos.Location = new System.Drawing.Point(7, 75);
             this.grpChosenVideos.Name = "grpChosenVideos";
-            this.grpChosenVideos.Size = new System.Drawing.Size(389, 254);
+            this.grpChosenVideos.Size = new System.Drawing.Size(746, 316);
             this.grpChosenVideos.TabIndex = 13;
             this.grpChosenVideos.TabStop = false;
             this.grpChosenVideos.Text = "Chosen Videos";
@@ -160,7 +160,7 @@ namespace ScreenSaver
             this.tvChosen.Name = "tvChosen";
             this.tvChosen.ShowLines = false;
             this.tvChosen.ShowPlusMinus = false;
-            this.tvChosen.Size = new System.Drawing.Size(139, 229);
+            this.tvChosen.Size = new System.Drawing.Size(496, 291);
             this.tvChosen.TabIndex = 19;
             this.tvChosen.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvChosen_AfterSelect);
             // 
@@ -169,7 +169,7 @@ namespace ScreenSaver
             this.cbLivePreview.AutoSize = true;
             this.cbLivePreview.Checked = true;
             this.cbLivePreview.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLivePreview.Location = new System.Drawing.Point(151, 208);
+            this.cbLivePreview.Location = new System.Drawing.Point(508, 208);
             this.cbLivePreview.Name = "cbLivePreview";
             this.cbLivePreview.Size = new System.Drawing.Size(87, 17);
             this.cbLivePreview.TabIndex = 18;
@@ -179,7 +179,7 @@ namespace ScreenSaver
             // player
             // 
             this.player.BackColor = System.Drawing.Color.Black;
-            this.player.Location = new System.Drawing.Point(151, 19);
+            this.player.Location = new System.Drawing.Point(508, 19);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(232, 132);
             this.player.Spu = -1;
@@ -194,7 +194,7 @@ namespace ScreenSaver
             this.pictureBox1.ErrorImage = null;
             this.pictureBox1.Image = global::Aerial.Properties.Resources.surfacebook;
             this.pictureBox1.InitialImage = global::Aerial.Properties.Resources.surfacebook;
-            this.pictureBox1.Location = new System.Drawing.Point(151, 31);
+            this.pictureBox1.Location = new System.Drawing.Point(508, 31);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(232, 180);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -206,7 +206,7 @@ namespace ScreenSaver
             this.chkUseTimeOfDay.AutoSize = true;
             this.chkUseTimeOfDay.Checked = true;
             this.chkUseTimeOfDay.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseTimeOfDay.Location = new System.Drawing.Point(151, 231);
+            this.chkUseTimeOfDay.Location = new System.Drawing.Point(508, 231);
             this.chkUseTimeOfDay.Name = "chkUseTimeOfDay";
             this.chkUseTimeOfDay.Size = new System.Drawing.Size(155, 17);
             this.chkUseTimeOfDay.TabIndex = 14;
@@ -239,7 +239,7 @@ namespace ScreenSaver
             this.tabCache.Location = new System.Drawing.Point(4, 22);
             this.tabCache.Name = "tabCache";
             this.tabCache.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCache.Size = new System.Drawing.Size(402, 335);
+            this.tabCache.Size = new System.Drawing.Size(759, 397);
             this.tabCache.TabIndex = 1;
             this.tabCache.Text = "Cache";
             this.tabCache.UseVisualStyleBackColor = true;
@@ -361,7 +361,7 @@ namespace ScreenSaver
             this.tabSource.Location = new System.Drawing.Point(4, 22);
             this.tabSource.Margin = new System.Windows.Forms.Padding(2);
             this.tabSource.Name = "tabSource";
-            this.tabSource.Size = new System.Drawing.Size(402, 335);
+            this.tabSource.Size = new System.Drawing.Size(759, 397);
             this.tabSource.TabIndex = 3;
             this.tabSource.Text = "Video Source";
             this.tabSource.UseVisualStyleBackColor = true;
@@ -411,7 +411,7 @@ namespace ScreenSaver
             // 
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Size = new System.Drawing.Size(402, 335);
+            this.tabAbout.Size = new System.Drawing.Size(759, 397);
             this.tabAbout.TabIndex = 2;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -426,7 +426,7 @@ namespace ScreenSaver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 419);
+            this.ClientSize = new System.Drawing.Size(791, 481);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.cancelButton);

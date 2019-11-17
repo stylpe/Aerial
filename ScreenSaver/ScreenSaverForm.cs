@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ScreenSaver
 {
@@ -322,11 +323,20 @@ namespace ScreenSaver
 
                 if (Caching.IsHit(url))
                 {
+                    Debug.WriteLine("Caching is hit");
                     player.Play(new Uri(Caching.Get(url)));
                 }
                 else
                 {
-                    player.Play(url);
+                    Debug.WriteLine("Caching is not hit");
+                    if (url.StartsWith("http"))
+                    {
+                        player.Play(url);
+                    }
+                    else
+                    {
+                        player.Play(new FileInfo(url));
+                    }
                     if (cacheEnabled && shouldCache &&
                         !previewMode && !Caching.IsCaching(url))
                     {
