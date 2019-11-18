@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenSaver", "ScreenSaver\ScreenSaver.csproj", "{C79DC106-23F3-4FA7-BA69-6B8684C4AD9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenSaverTest", "ScreenSaverTest\ScreenSaverTest.csproj", "{381372DF-88D3-407F-B5E7-2994D39C4785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -36,6 +38,24 @@ Global
 		{C79DC106-23F3-4FA7-BA69-6B8684C4AD9F}.Release|x64.Build.0 = Release|x64
 		{C79DC106-23F3-4FA7-BA69-6B8684C4AD9F}.Release|x86.ActiveCfg = Release|x86
 		{C79DC106-23F3-4FA7-BA69-6B8684C4AD9F}.Release|x86.Build.0 = Release|x86
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|Any CPU.Build.0 = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|x64.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|x64.Build.0 = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|x86.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.All|x86.Build.0 = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|x64.Build.0 = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Debug|x86.Build.0 = Debug|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|x64.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|x64.Build.0 = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|x86.ActiveCfg = Release|Any CPU
+		{381372DF-88D3-407F-B5E7-2994D39C4785}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

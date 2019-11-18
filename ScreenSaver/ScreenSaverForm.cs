@@ -11,7 +11,7 @@ namespace ScreenSaver
 {
     public partial class ScreenSaverForm : Form
     {
-        private int currentVideoIndex = 0;
+        private int currentVideoIndex;
         private DateTime lastInteraction = DateTime.Now;
         private Point mouseLocation = Point.Empty;
         private List<Asset> Movies;
@@ -22,6 +22,7 @@ namespace ScreenSaver
         private bool showVideo = true;
         private bool windowMode = false;
         private Rectangle providedBounds;
+        private UniformRandomSelector selector = new UniformRandomSelector();
 
         public ScreenSaverForm()
         {
@@ -357,9 +358,11 @@ namespace ScreenSaver
                         Caching.StartDelayedCache(url);
                     }
                 }
-                currentVideoIndex++;
-                if (currentVideoIndex >= Movies.Count)
-                    currentVideoIndex = 0;
+
+                //currentVideoIndex++;
+                //if (currentVideoIndex >= Movies.Count)
+                //    currentVideoIndex = 0;
+                currentVideoIndex = selector.next(Movies.Count);
             }
         }
 
