@@ -21,7 +21,8 @@ namespace ScreenSaver
         private bool shouldCache = false;
         private bool showVideo = true;
         private bool windowMode = false;
-        
+        private Rectangle providedBounds;
+
         public ScreenSaverForm()
         {
             InitializeComponent();
@@ -67,11 +68,13 @@ namespace ScreenSaver
 
         public ScreenSaverForm(Rectangle Bounds, bool shouldCache, bool showVideo) : this()
         {
+            this.providedBounds = Bounds;
             this.Bounds = Bounds;
             this.shouldCache = shouldCache;
             this.showVideo = showVideo;
+            //MessageBox.Show($"Bounds (ScreenSaverForm): {Bounds.Left}+{Bounds.Top}, {Bounds.Size.Width}x{Bounds.Size.Height}");
         }
-        
+
         void RegisterEvents()
         {
             this.player.Video.IsMouseInputEnabled = false; // Disable VLC video player handling mouse/keyboard events itself, 
@@ -103,7 +106,8 @@ namespace ScreenSaver
         {
             if (!previewMode && keyData == Keys.Escape)
             {
-                this.Close();
+                //this.Close();
+                ShouldExit();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -114,8 +118,13 @@ namespace ScreenSaver
         {
             if (!previewMode && !windowMode) Cursor.Hide();
 
+            if (this.providedBounds != null)
+            {
+                Bounds = providedBounds;
+            }
+            //MessageBox.Show($"Bounds (ScreenSaverForm_Load): {Bounds.Left}+{Bounds.Top}, {Bounds.Size.Width}x{Bounds.Size.Height}");
             LayoutPlayer();
-            
+
             this.BackgroundImageLayout = ImageLayout.None;
 
             if (showVideo) // testing preview video speed didn't work well && !previewMode
@@ -156,7 +165,11 @@ namespace ScreenSaver
         private void ScreenSaverForm_Resize(object sender, EventArgs e)
         {
             Trace.WriteLine("ScreenSaverForm_Resize()");
-            if (windowMode) ResizePlayer();
+            if (windowMode)
+            {
+                //MessageBox.Show("ScreenSaverForm_Resize");
+                ResizePlayer();
+            }
         }
 
         private void ScreenSaverForm_Shown(object sender, EventArgs e)
@@ -168,8 +181,8 @@ namespace ScreenSaver
         {
             if (e.KeyChar == 'n')
                 SetNextVideo();
-            else
-                ShouldExit();
+            //else
+            //    ShouldExit();
         }
         #endregion
 
@@ -195,7 +208,7 @@ namespace ScreenSaver
         private void ScreenSaverForm_MouseClick(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("ScreenSaverForm_MouseClick()");
-            ShouldExit();
+            //ShouldExit();
         }
         
         private void btnClose_MouseMove(object sender, MouseEventArgs e)
@@ -236,9 +249,9 @@ namespace ScreenSaver
                 if (!mouseLocation.IsEmpty)
                 {
                     // Terminate if mouse is moved a significant distance
-                    if (Math.Abs(mouseLocation.X - e.X) > 5 ||
-                        Math.Abs(mouseLocation.Y - e.Y) > 5)
-                        ShouldExit();
+                    //if (Math.Abs(mouseLocation.X - e.X) > 5 ||
+                    //    Math.Abs(mouseLocation.Y - e.Y) > 5)
+                    //    ShouldExit();
                 }
                 // Update current mouse location
                 mouseLocation = e.Location;
@@ -299,6 +312,7 @@ namespace ScreenSaver
                     videoSize.Width,
                     videoSize.Height);
             }
+            //MessageBox.Show($"Bounds (MaximizeVideo): {Bounds.Left}+{Bounds.Top}, {Bounds.Size.Width}x{Bounds.Size.Height}");
         }
 
 
@@ -349,7 +363,6 @@ namespace ScreenSaver
             }
         }
 
-
         private void player_PlayStateChange(object sender, EventArgs e)
         {
             NativeMethods.EnableMonitorSleep();
@@ -369,6 +382,7 @@ namespace ScreenSaver
             this.player.ContextMenu = null;
             Application.AddMessageFilter(new IgnoreMouseClickMessageFilter(this, player));
 
+            //MessageBox.Show("LayoutPlayer");
             ResizePlayer();
         }
         
@@ -380,6 +394,9 @@ namespace ScreenSaver
             this.player.Size = CalculateVideoFillSize(this.Size);
             this.player.Top = (this.Size.Height / 2) - (this.player.Size.Height / 2);
             this.player.Left = (this.Size.Width / 2) - (this.player.Size.Width / 2);
+
+            //MessageBox.Show($"Size: {Size.Width}x{Size.Height}, Top: {this.player.Top}, Left: {this.player.Left}");
+            //MessageBox.Show($"Bounds (ResizePlayer): {Bounds.Left}+{Bounds.Top}, {Bounds.Size.Width}x{Bounds.Size.Height}");
         }
 
         /// <summary>
