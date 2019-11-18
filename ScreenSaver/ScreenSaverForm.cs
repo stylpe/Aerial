@@ -141,9 +141,9 @@ namespace ScreenSaver
                 };
 #endif
 
-               // NextVideoTimer.Tick += NextVideoTimer_Tick;
-                NextVideoTimer.Interval = 1000;
-                NextVideoTimer.Enabled = true;
+                //NextVideoTimer.Tick += NextVideoTimer_Tick;
+                //NextVideoTimer.Interval = 1000;
+                //NextVideoTimer.Enabled = true;
 
                 currentVideoIndex = selector.next(Movies.Count);
                 SetNextVideo();
@@ -184,8 +184,8 @@ namespace ScreenSaver
         {
             if (e.KeyChar == 'n')
                 SetNextVideo(true);
-            //else
-            //    ShouldExit();
+            else
+                ShouldExit();
         }
         #endregion
 
@@ -211,7 +211,7 @@ namespace ScreenSaver
         private void ScreenSaverForm_MouseClick(object sender, MouseEventArgs e)
         {
             Trace.WriteLine("ScreenSaverForm_MouseClick()");
-            //ShouldExit();
+            ShouldExit();
         }
         
         private void btnClose_MouseMove(object sender, MouseEventArgs e)
@@ -251,10 +251,10 @@ namespace ScreenSaver
             {
                 if (!mouseLocation.IsEmpty)
                 {
-                    // Terminate if mouse is moved a significant distance
-                    //if (Math.Abs(mouseLocation.X - e.X) > 5 ||
-                    //    Math.Abs(mouseLocation.Y - e.Y) > 5)
-                    //    ShouldExit();
+                    //Terminate if mouse is moved a significant distance
+                    if (Math.Abs(mouseLocation.X - e.X) > 5 ||
+                        Math.Abs(mouseLocation.Y - e.Y) > 5)
+                        ShouldExit();
                 }
                 // Update current mouse location
                 mouseLocation = e.Location;
@@ -371,6 +371,12 @@ namespace ScreenSaver
                     }
                 }
 
+                if (Movies[currentVideoIndex].shouldRepeatFrom && repeated != 1)
+                {
+                    //MessageBox.Show($"Current time: {player.Time}, setting to {Movies[currentVideoIndex].repeatFrom}");
+                    player.Time = Movies[currentVideoIndex].repeatFrom;
+                }
+
                 //currentVideoIndex++;
                 //if (currentVideoIndex >= Movies.Count)
                 //    currentVideoIndex = 0;
@@ -451,4 +457,5 @@ namespace ScreenSaver
             e.SetRelativeLibvlcDirectory();
         }
     }
+
 }
