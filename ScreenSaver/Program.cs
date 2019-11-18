@@ -66,15 +66,16 @@ namespace Aerial
                 }
                 else if (firstArgument == "/p")      // Preview mode
                 {
-                    if (secondArgument == null)
-                    {
-                        MessageBox.Show("Sorry, but the expected window handle was not provided.",
-                            "ScreenSaver", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
+                    Application.Exit();
+                    //if (secondArgument == null)
+                    //{
+                    //    MessageBox.Show("Sorry, but the expected window handle was not provided.",
+                    //        "ScreenSaver", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //    return;
+                    //}
                     
-                    IntPtr previewWndHandle = new IntPtr(long.Parse(secondArgument));
-                    Application.Run(new ScreenSaverForm(previewWndHandle));
+                    //IntPtr previewWndHandle = new IntPtr(long.Parse(secondArgument));
+                    //Application.Run(new ScreenSaverForm(previewWndHandle));
                 }
                 else if (firstArgument == "/s")      // Full-screen mode
                 {
@@ -91,7 +92,7 @@ namespace Aerial
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            else    
+            else
             {
                 if (System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName.EndsWith("exe")) // treat like /w
                 {
