@@ -1,3 +1,8 @@
+## Installation
+Copy `Aerial.scr` and `Vlc.DotNet.*.dll` files to `C:\Windows` folder and `libvlc` folder to `C:\Windows\system32`.
+
+<br/><br/>
+
 <p align="center">
 <a href="https://github.com/cDima/Aerial" target="_blank">
 <img align="center" alt="apple tv windows aerial screen saver screencast" src="https://github.com/cDima/Aerial/raw/master/imgs/win.gif" />
