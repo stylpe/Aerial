@@ -43,24 +43,40 @@ namespace Aerial
 
         internal static bool IsHit(string url)
         {
+            if (!url.StartsWith("http"))
+            {
+                return true;
+            }
             string filename = Path.GetFileName(url);
             return File.Exists(Path.Combine(CacheFolder, filename));
         }
 
         internal static bool IsCaching(string url)
         {
+            if (!url.StartsWith("http"))
+            {
+                return false;
+            }
             string filename = Path.GetFileName(url);
             return File.Exists(Path.Combine(TempFolder, filename));
         }
 
         internal static string Get(string url)
         {
+            if (!url.StartsWith("http"))
+            {
+                return url;
+            }
             string filename = Path.GetFileName(url);
             return Path.Combine(CacheFolder, filename);
         }
 
         internal static void StartDelayedCache(string url)
         {
+            if (!url.StartsWith("http"))
+            {
+                return;
+            }
             if (EnsureEnoughSpace())
             {
                 Task.Delay(DelayAmount).ContinueWith(t =>
@@ -78,6 +94,7 @@ namespace Aerial
                 });
             }
         }
+
         private static void OnDownloadFileComplete(object sender, AsyncCompletedEventArgs e)
         {
             var filename = e.UserState.ToString();
