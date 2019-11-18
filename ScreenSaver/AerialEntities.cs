@@ -142,6 +142,8 @@ namespace Aerial
         public string id;// : "b1-1",
         public string timeOfDay;//" : "day"
         public int repeat;
+        public bool shouldRepeatFrom;
+        public long repeatFrom;
 
         [NonSerialized]
         internal int numeric = 0;
