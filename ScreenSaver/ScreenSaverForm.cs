@@ -23,6 +23,7 @@ namespace ScreenSaver
         private bool windowMode = false;
         private Rectangle providedBounds;
         private UniformRandomSelector selector = new UniformRandomSelector();
+        private int repeated = 0;
 
         public ScreenSaverForm()
         {
@@ -143,7 +144,8 @@ namespace ScreenSaver
                // NextVideoTimer.Tick += NextVideoTimer_Tick;
                 NextVideoTimer.Interval = 1000;
                 NextVideoTimer.Enabled = true;
-                    
+
+                currentVideoIndex = selector.next(Movies.Count);
                 SetNextVideo();
             } else if (previewMode)
             {
@@ -181,7 +183,7 @@ namespace ScreenSaver
         private void ScreenSaverForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 'n')
-                SetNextVideo();
+                SetNextVideo(true);
             //else
             //    ShouldExit();
         }
@@ -316,8 +318,12 @@ namespace ScreenSaver
             //MessageBox.Show($"Bounds (MaximizeVideo): {Bounds.Left}+{Bounds.Top}, {Bounds.Size.Width}x{Bounds.Size.Height}");
         }
 
-
         private void SetNextVideo()
+        {
+            SetNextVideo(false);
+        }
+
+        private void SetNextVideo(bool force)
         {
             Trace.WriteLine("SetNextVideo()");
             var cacheEnabled = new RegSettings().CacheVideos;
@@ -333,6 +339,18 @@ namespace ScreenSaver
 
                     return;
                 }
+
+                if (force || repeated >= Movies[currentVideoIndex].repeat)
+                {
+                    currentVideoIndex = selector.next(Movies.Count);
+                    repeated = 1;
+                }
+                else
+                {
+                    repeated++;
+                }
+
+                //MessageBox.Show($"{Movies[currentVideoIndex].url}\n{Movies[currentVideoIndex].repeat}\n{repeated}\n{force}");
 
                 string url = Movies[currentVideoIndex].url;
 
@@ -362,7 +380,6 @@ namespace ScreenSaver
                 //currentVideoIndex++;
                 //if (currentVideoIndex >= Movies.Count)
                 //    currentVideoIndex = 0;
-                currentVideoIndex = selector.next(Movies.Count);
             }
         }
 

@@ -141,6 +141,7 @@ namespace Aerial
         public string type;//" : "video",
         public string id;// : "b1-1",
         public string timeOfDay;//" : "day"
+        public int repeat;
 
         [NonSerialized]
         internal int numeric = 0;
