@@ -362,14 +362,8 @@ namespace ScreenSaver
                 else
                 {
                     Debug.WriteLine("Caching is not hit");
-                    if (url.StartsWith("http"))
-                    {
-                        player.Play(url);
-                    }
-                    else
-                    {
-                        player.Play(new FileInfo(url));
-                    }
+                    player.Play(url);
+
                     if (cacheEnabled && shouldCache &&
                         !previewMode && !Caching.IsCaching(url))
                     {
