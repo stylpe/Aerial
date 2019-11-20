@@ -32,6 +32,17 @@ namespace ScreenSaverTest
             Assert.IsTrue(counters.Max() - counters.Min() < 2);
         }
 
+        [TestMethod, Timeout(10000)]
+        public void DoesntHangWithFewElements()
+        {
+            int zero = sut.next(0);
+            int one = sut.next(1);
+            sut.next(2);
+
+            Assert.AreEqual(0, zero);
+            Assert.AreEqual(0, one);
+        }
+
         [TestMethod]
         public void SelectsNonSequentially()
         {

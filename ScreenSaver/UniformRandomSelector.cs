@@ -15,6 +15,11 @@ namespace Aerial
 
         public int next(int requestedCount)
         {
+            if (requestedCount < 2)
+            {
+                return 0;
+            }
+
             if (requestedCount != count)
             {
                 init(requestedCount);
