@@ -14,12 +14,15 @@ jobs:
     - name: Setup NuGet.exe for use with actions
       uses: NuGet/setup-nuget@v1.0.2
     - name: Restore NuGet packages
-      run: nuget restore ScreenSaver.sln
+      working-directory: ScreenSaver
+      run: nuget restore
     - name: Build with msbuild
       working-directory: ScreenSaver
       run: msbuild /t:Build /p:Configuration=Release
+    - name: Copy just the .scr to its own folder
+      run: mkdir artifact & copy Screensaver\bin\Release\Aerial.scr artifact\Aerial.scr
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: output
-        path: ScreenSaver\bin\Release\
+        path: artifact
