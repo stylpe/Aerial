@@ -15,9 +15,21 @@ namespace Aerial
 
         public static List<Asset> GetMovies()
         {
-            var urls = GetAllEntries();
+            return new DirectoryInfo(@"G:\Aerial")
+                .EnumerateFiles("*.mov")
+                .Select(file => new Asset
+                {
+                    url = file.FullName,
+                    accessibilityLabel = "Local",
+                    type = "video",
+                    id = file.name,
+                    timeOfDay = "day",
+                })
+                .ToList();
 
-            return FilterEntries(urls);
+            //var urls = GetAllEntries();
+
+            //return FilterEntries(urls);
         }
         public static List<Asset> GetAllMovies()
         {
