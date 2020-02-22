@@ -22,7 +22,7 @@ namespace Aerial
                     url = file.FullName,
                     accessibilityLabel = "Local",
                     type = "video",
-                    id = file.name,
+                    id = file.Name,
                     timeOfDay = "day",
                 })
                 .ToList();
