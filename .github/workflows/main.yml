@@ -11,16 +11,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.0.2
     - name: Restore NuGet packages
-      working-directory: ScreenSaver
-      run: msbuild /t:Restore
+      run: nuget restore ScreenSaver.sln
     - name: Build with msbuild
       working-directory: ScreenSaver
       run: msbuild /t:Build /p:Configuration=Release
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        # Artifact name
         name: output
-        # Directory containing files to upload
         path: ScreenSaver\bin\Release\
