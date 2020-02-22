@@ -12,8 +12,10 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
     - name: Restore NuGet packages
+      working-directory: ScreenSaver
       run: msbuild /t:Restore
     - name: Build with msbuild
+      working-directory: ScreenSaver
       run: msbuild /t:Build /p:Configuration=Release
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
