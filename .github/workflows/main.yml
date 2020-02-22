@@ -1,4 +1,4 @@
-name: .NET Core
+name: .NET Framework
 
 on: [push]
 
@@ -19,7 +19,10 @@ jobs:
       working-directory: ScreenSaver
       run: msbuild /t:Build /p:Configuration=Release
     - name: Copy just the .scr to its own folder
-      run: mkdir artifact & copy Screensaver\bin\Release\Aerial.scr artifact\Aerial.scr
+      shell: pwsh
+      run: |
+        mkdir artifact
+        copy Screensaver\bin\Release\Aerial.scr artifact\Aerial.scr
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
